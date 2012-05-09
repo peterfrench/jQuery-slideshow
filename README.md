@@ -17,10 +17,10 @@ Use custom selectors for slides.
 
 ## Defaults
 
-slide '.slideshow-item'
+(slide) : '.slideshow-item'
 
-speed 5000
+(speed) :  5000
 
-randomStartfalse
+(random) : Startfalse
 
 
