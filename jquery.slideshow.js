@@ -26,31 +26,31 @@
 	return this.each(function() {
 
 		var self = this;
-		var $slides = $(this).find('.slideshow-item');
-		
+		var $slides = $(this).find(settings.slides);
+
 		// don't create a slideshow if there is only one slide.
 		if( $slides.length < 2 ) return;
-		
+
 		var i,
 			cycle = null,
 			$nav = $('<nav />').appendTo(this);
-						
+
 		for(i = 1; i <= $slides.length; i++) $nav.append( $('<a href="#"><span>'+i+'</span></a>'));
-		
+
 		$nav.wrapInner('<div class="slideshow-nav-inner" />');
-		
+
 		// get starting slide
 		if(settings.randomStart) {
 			i = Math.floor(Math.random()*$slides.length);
 		}else{
 			i = 0;
 		}
-		
+
 		// show & hide slides
 		$nav.find('a').eq(i).addClass('active')
 		$slides.filter(':visible').hide();
-		$slides.eq(i).show();	
-		
+		$slides.eq(i).show();
+
 		// bind button functions
 		$nav.find('a').click(function(){
 			clearInterval(cycle);
@@ -63,11 +63,11 @@
 			$(this).addClass('active');
 			return false;
 		});
-		
+
 		// run slideshow
 		cycle = setInterval(function(){
 			var $current = $slides.filter(':visible'),
-				$next = $current.next('.slideshow-item');
+				$next = $current.next(settings.slides);
 			if ( !$next.length ) $next = $slides.filter(':eq(0)');
 			var i = $slides.index($next);
 			$current.fadeOut(500);
